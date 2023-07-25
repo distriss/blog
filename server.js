@@ -22,22 +22,26 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema);
 
+// get all Posts
 app.get('/posts', async (req, res) => {
     const posts = await Post.find();
     res.send(posts);
 });
 
+// get one Post
 app.get('/posts/:id', async (req,res) => {
     const post = await Post.findById(req.params.id);
     res.send(post);
 });
 
+// create Post
 app.post('/posts', async (req, res) => {
     const newPost = new Post(req.body);
     const savedPost = await newPost.save();
     res.send(savedPost);
 });
 
+// delete Post
 app.delete('/posts/:id', async (req, res) => {
     await Post.findByIdAndDelete(req.params.id);
     res.status(200).send('Post deleted.');
