@@ -48,6 +48,6 @@ app.delete('/posts/:id', async (req, res) => {
     res.status(200).send('Post deleted.');
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(process.env.PORT, () => console.log(`Server running on port ${PORT}`));
 
 
